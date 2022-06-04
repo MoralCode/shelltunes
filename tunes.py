@@ -26,6 +26,6 @@ def tone_to_sine(frequency:int, samplerate: int, duration:int, clean_end: bool):
 		yield math.sin((frequency * (2* math.pi) * i) / samplerate)
 
 
-
-for line in sys.stdin:
-	pass
+if __name__ == '__main__':
+	for line in sys.stdin:
+		pass
