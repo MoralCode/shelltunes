@@ -4,8 +4,7 @@ import random
 
 
 
-
-def rand_to_note(rand, samplerate):
+def rand_to_note_special(rand):
 	"""converts a random integer to a note
 	"""
 	notes = [4, 5, 7, 11]
@@ -17,6 +16,21 @@ def rand_to_note(rand, samplerate):
 	note = note * math.log(2)
 	note = math.exp(note)
 	note = note*1046
+
+	return note
+
+
+
+def rand_to_note(rand):
+	"""converts a random integer to a note
+	"""
+	notes = [600, 800, 1000, 1200]
+	note_index = rand % len(notes) -1
+	if note_index > len(notes) -1:
+		note = 400 # default note
+	else:
+		note = notes[note_index]
+
 	return note
 
 def note_to_frequency_special(note):
