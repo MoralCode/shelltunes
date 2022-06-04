@@ -35,7 +35,7 @@ def rand_to_note(rand):
 
 def note_to_frequency_special(note):
 	# this junk negates the math in tone_to_sine to get to a frequency value
-	note = note*samplerate/(2*math.pi)
+	note = (note*4.4)/(2*math.pi)
 	return note
 
 
@@ -73,14 +73,14 @@ def apply_volume(generator, vol=100):
 
 if __name__ == '__main__':
 	samplerate = 48000
-	note_duration = 10000
+	note_duration = 8000
 	volume = 75
 	while True:
 		# if you think using randint is cheating, use `for line in sys.stdin:` instead of the while above and parse the number from the line
 
 		randint = random.randint(0, 255)
 		note = rand_to_note(randint)
-		freq = note_to_frequency_special(note, samplerate)
+		freq = note_to_frequency_special(note)
 
 		for i in tone_to_sine(note, samplerate, note_duration, True):
 			# print(i.to_bytes(4, byteorder='big', signed=True).hex())
