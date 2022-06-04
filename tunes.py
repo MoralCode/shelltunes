@@ -42,13 +42,13 @@ def note_to_frequency_special(note):
 
 
 # https://www.daniweb.com/programming/software-development/threads/354944/creating-a-sine-wave-at-a-specific-frequency-and-sample-rate
-def tone_to_sine(frequency:int, samplerate: int, duration:int, clean_end: bool):
-	"""converts a frequency to a sine wave at that frequency
+def tone_to_sine(frequency:int, samplerate: int, samples:int, clean_end: bool):
+	"""converts a frequency to a sine wave at that frequency.
 
 	Args:
 		frequency (int): number of oscilations per second
 		samplerate (int): number of samples in a second
-		duration (int): number of samples worth of data to generate
+		samples (int): number of samples worth of data to generate
 		clean_end (bool): cuts the output slightly short such that it ends at/near a complete cycle. this eliminates popping between tones
 
 	Yields:
@@ -56,12 +56,12 @@ def tone_to_sine(frequency:int, samplerate: int, duration:int, clean_end: bool):
 	"""
 	if clean_end:
 		samples_per_cycle=samplerate/frequency
-		total_cycles = duration/samples_per_cycle
+		total_cycles = (samples)/samples_per_cycle
 		complete_cycles = math.floor(total_cycles)
 		samplecount = int(complete_cycles * samples_per_cycle)
 	else:
-		samplecount = duration
-
+		samplecount = samples
+	
 	for i in range(samplecount):
 		yield math.sin((frequency * (2* math.pi) * i) / samplerate)
 
