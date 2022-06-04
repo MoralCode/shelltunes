@@ -18,7 +18,7 @@ def tone_to_sine(frequency:int, samplerate: int, duration:int, clean_end: bool):
 		samples_per_cycle=samplerate/frequency
 		total_cycles = duration/samples_per_cycle
 		complete_cycles = math.floor(total_cycles)
-		samplecount = complete_cycles * samples_per_cycle
+		samplecount = int(complete_cycles * samples_per_cycle)
 	else:
 		samplecount = duration
 
