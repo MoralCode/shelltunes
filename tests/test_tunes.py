@@ -30,5 +30,27 @@ class TestTunes(unittest.TestCase):
 		projected_last_nonclean_sample = samples[-1] + (samples[-1] - samples[-2])
 		self.assertNotAlmostEqual(projected_last_nonclean_sample, 0, places=2)
 
+	def test_tone_to_sine_frequency(self):
+
+		# 0.1 seconds of samples, should be 60 sine waves
+		samples = list(tone_to_sine(600, 44100, 44100, False))
+		self.assertEqual(len(samples), 44100)
+
+		# count how many times the sine wave transitions from positive to negative
+		negative_swing_count = 0
+		is_positive = True
+		for i in samples:
+			if i < 0 and is_positive:
+				negative_swing_count += 1
+				is_positive = False
+			elif i > 0:
+				is_positive = True
+			else:
+				pass
+				# is_positive stays false
+		
+
+		self.assertEqual(negative_swing_count, 600)
+
 if __name__ == '__main__':
     unittest.main()
