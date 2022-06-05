@@ -14,7 +14,9 @@ The main reason for making this script was to prevent the harsh pops when the no
 
 ![an example of a waveform with a rather mild case of "harsh popping" where the waveform suddenly changes direction without following a sinusoidal pattern](images/pops.png)
 
-This python script primarily addresses this second point and includes some code to ensure that generated waveforms end at a reasonable location so the start of the new tone continues the waveform and doesnt create a harsh pop
+This python script primarily addresses this second point and includes some code to ensure that generated waveforms end at a reasonable location so the start of the new tone continues the waveform and doesnt create a harsh pop.
+
+See the [sample mp3](sample.mp3) for an example of how it can sound.
 
 ## Usage
 `python3 tunes.py | awk '{ printf("%08X\n",$1) }' | xxd -r -p | aplay -c 2 -f S32_LE -r 24000`
